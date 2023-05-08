@@ -1,15 +1,19 @@
-require('dotenv').config()
-const express = require('express')
-const mongoose = require('mongoose')
-const session = require('express-session')
+import dotenv from 'dotenv'
+import express from 'express'
+import connectDB from './config/db.js'
+import colors from 'colors'
+dotenv.config()
+
+connectDB()
 
 const app = express()
-const PORT = process.env.PORT || 5000
+
+app.use(express.json())
 
 app.get('/', (req, res) => {
   res.send('hello word')
 })
 
-app.listen(PORT, () => {
-  console.log(`Server is running at http://localhost:${PORT}`)
-})
+const PORT = process.env.PORT || 5000
+
+app.listen(PORT, console.log(`Server running on port ${PORT}`.yellow.bold))
