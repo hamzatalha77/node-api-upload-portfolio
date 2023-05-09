@@ -7,7 +7,6 @@ const portfolioSchema = mongoose.Schema({
   },
   image: {
     type: String,
-    required: true,
   },
   github: {
     type: String,
