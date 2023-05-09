@@ -11,7 +11,7 @@ const app = express()
 
 app.use(express.json())
 
-app.use('/api/portfolio', portfolioRoutes)
+app.use('/api/portfolios', portfolioRoutes)
 
 app.get('/', (req, res) => {
   res.send('hello word')
