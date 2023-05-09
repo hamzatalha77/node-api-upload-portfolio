@@ -2,6 +2,7 @@ import dotenv from 'dotenv'
 import express from 'express'
 import connectDB from './config/db.js'
 import colors from 'colors'
+import portfolioRoutes from './routes/portfolioRoutes.js'
 dotenv.config()
 
 connectDB()
@@ -9,6 +10,8 @@ connectDB()
 const app = express()
 
 app.use(express.json())
+
+app.use('/api/portfolio', portfolioRoutes)
 
 app.get('/', (req, res) => {
   res.send('hello word')
