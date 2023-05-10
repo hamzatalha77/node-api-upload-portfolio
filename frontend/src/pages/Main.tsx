@@ -1,7 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 const Main = () => {
-  return <div className="h-screen w-full bg-slate-400">Main</div>
+  const [portfolios, setPortfolios] = useState([])
+  return (
+    <div className="h-screen w-full bg-slate-400">
+      <div>{}</div>
+    </div>
+  )
 }
 
 export default Main
