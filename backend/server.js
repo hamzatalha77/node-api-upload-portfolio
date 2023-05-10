@@ -11,11 +11,11 @@ const app = express()
 
 app.use(express.json())
 
-app.use('/api/portfolios', portfolioRoutes)
-
 app.get('/', (req, res) => {
-  res.send('hello word')
+  res.send('Api is running...')
 })
+
+app.use('/api/portfolios', portfolioRoutes)
 
 const PORT = process.env.PORT || 5000
 
