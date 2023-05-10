@@ -1,9 +1,13 @@
 import React from 'react'
-
-import './App.css'
+import './main.css'
+import Main from './pages/Main'
 
 function App() {
-  return <></>
+  return (
+    <>
+      <Main />
+    </>
+  )
 }
 
 export default App
