@@ -3,6 +3,7 @@ import express from 'express'
 import connectDB from './config/db.js'
 import colors from 'colors'
 import portfolioRoutes from './routes/portfolioRoutes.js'
+import { errorHandler, notFound } from './middleware/errorMiddleWare.js'
 dotenv.config()
 
 connectDB()
@@ -16,6 +17,9 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api/portfolios', portfolioRoutes)
+
+app.use(notFound)
+app.use(errorHandler)
 
 const PORT = process.env.PORT || 5000
 
