@@ -11,7 +11,7 @@ const Main = (history: any) => {
 
   const dispatch = useDispatch()
 
-  const portfolioCreate = useSelector((state) => state.portfolioCreate)
+  const portfolioCreate = useSelector((state: any) => state.portfolioCreate)
 
   const { loading: loadingCreate, success: successCreate } = portfolioCreate
 
