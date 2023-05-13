@@ -1,7 +1,8 @@
 import axios from 'axios'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { createPortfolio } from '../actions/portfolioActions'
+import { PORTFOLIOS_CREATE_RESET } from '../constants/portfolioConstants'
 
 const Main = (history: any) => {
   const [name, setName] = useState('')
@@ -14,9 +15,27 @@ const Main = (history: any) => {
 
   const { loading: loadingCreate, success: successCreate } = portfolioCreate
 
+  useEffect(() => {
+    if (successCreate) {
+      dispatch({ type: PORTFOLIOS_CREATE_RESET })
+      history.push('/home')
+    }
+  }, [dispatch, history, successCreate])
+
+  const submitHandler = (e) => {
+    e.preventDefault()
+    dispatch(
+      createPortfolio({
+        name,
+        github,
+        live,
+      })
+    )
+  }
+
   return (
     <div className="h-screen w-full bg-slate-400">
-      <form action="">
+      <form onSubmit={submitHandler}>
         <input
           type="text"
           placeholder="Project name..."
