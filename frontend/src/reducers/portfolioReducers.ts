@@ -17,7 +17,7 @@ export const portfolioReducer = (state = {}, action: PortfolioAction) => {
     case PORTFOLIOS_CREATE_SUCCESS:
       return { loading: false, success: true, portfolio: action.payload }
     case PORTFOLIOS_CREATE_FAIL:
-      return { loading: false, error: action.payload }
+      return { loading: false }
     case PORTFOLIOS_CREATE_RESET:
       return {}
     default:
