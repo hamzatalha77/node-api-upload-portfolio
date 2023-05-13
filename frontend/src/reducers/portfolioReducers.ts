@@ -10,7 +10,7 @@ interface PortfolioAction {
   payload?: any
 }
 
-export const portfolioReducer = (state = {}, action: PortfolioAction) => {
+export const portfolioCreateReducer = (state = {}, action: PortfolioAction) => {
   switch (action.type) {
     case PORTFOLIOS_CREATE_REQUEST:
       return { loading: true }

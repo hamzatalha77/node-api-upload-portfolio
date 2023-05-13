@@ -1,12 +1,18 @@
 import axios from 'axios'
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { createPortfolio } from '../actions/portfolioActions'
+
 const Main = (history: any) => {
   const [name, setName] = useState('')
   const [github, setGithub] = useState('')
   const [live, setLive] = useState('')
 
   const dispatch = useDispatch()
+
+  const portfolioCreate = useSelector((state) => state.portfolioCreate)
+
+  const { loading: loadingCreate, success: successCreate } = portfolioCreate
 
   return (
     <div className="h-screen w-full bg-slate-400">
