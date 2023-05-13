@@ -7,6 +7,7 @@ const Main = (history: any) => {
   const [live, setLive] = useState('')
 
   const dispatch = useDispatch()
+
   return (
     <div className="h-screen w-full bg-slate-400">
       <form action="">
@@ -28,6 +29,7 @@ const Main = (history: any) => {
           name="live"
           onChange={(e) => setLive(e.target.value)}
         />
+        <button type="submit">Send !</button>
       </form>
     </div>
   )
