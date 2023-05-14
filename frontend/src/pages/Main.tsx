@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from 'react-redux'
 import { createPortfolio } from '../actions/portfolioActions'
 import { PORTFOLIOS_CREATE_RESET } from '../constants/portfolioConstants'
 
-const Main = (history: any) => {
+const Main = (history) => {
   const [name, setName] = useState('')
   const [github, setGithub] = useState('')
   const [live, setLive] = useState('')
 
   const dispatch = useDispatch()
 
-  const portfolioCreate = useSelector((state: any) => state.portfolioCreate)
+  const portfolioCreate = useSelector((state) => state.portfolioCreate)
 
   const { loading: loadingCreate, success: successCreate } = portfolioCreate
 
@@ -22,7 +22,7 @@ const Main = (history: any) => {
     }
   }, [dispatch, history, successCreate])
 
-  const submitHandler = (e: any) => {
+  const submitHandler = (e) => {
     e.preventDefault()
     dispatch(
       createPortfolio({
