@@ -40,21 +40,18 @@ const Main = (history: any) => {
           type="text"
           placeholder="Project name..."
           name="name"
-          value={name}
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Github code source..."
           name="github"
-          value={github}
           onChange={(e) => setGithub(e.target.value)}
         />
         <input
           type="text"
           placeholder="Project Url..."
           name="live"
-          value={live}
           onChange={(e) => setLive(e.target.value)}
         />
         <button type="submit">Send !</button>

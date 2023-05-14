@@ -7,7 +7,8 @@ import {
 } from '../constants/portfolioConstants'
 
 export const createPortfolio =
-  (portfolioData: any) => async (dispatch: any) => {
+  (portfolioData: any) =>
+  async (dispatch: Dispatch): Promise<any> => {
     try {
       dispatch({ type: PORTFOLIOS_CREATE_REQUEST })
 
@@ -18,7 +19,9 @@ export const createPortfolio =
         type: PORTFOLIOS_CREATE_SUCCESS,
         payload: data,
       })
-    } catch (error) {
+
+      return { success: true } // Return an action object
+    } catch (error: any) {
       dispatch({
         type: PORTFOLIOS_CREATE_FAIL,
         payload:
@@ -26,5 +29,7 @@ export const createPortfolio =
             ? error.response.data.message
             : error.message,
       })
+
+      return { success: false } // Return an action object
     }
   }
