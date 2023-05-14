@@ -22,7 +22,7 @@ const Main = (history: any) => {
     }
   }, [dispatch, history, successCreate])
 
-  const submitHandler = (e) => {
+  const submitHandler = (e: any) => {
     e.preventDefault()
     dispatch(
       createPortfolio({
