@@ -5,9 +5,6 @@ const portfolioSchema = mongoose.Schema({
     type: String,
     required: true,
   },
-  image: {
-    type: String,
-  },
   github: {
     type: String,
     required: true,

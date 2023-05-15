@@ -10,7 +10,6 @@ const createPortfolio = asyncHandler(async (req, res) => {
   try {
     const portfolio = new Portfolio({
       name: req.body.name,
-      image: req.body.image,
       github: req.body.github,
       live: req.body.live,
     })
