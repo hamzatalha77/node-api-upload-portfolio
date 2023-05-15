@@ -30,8 +30,6 @@ const PortfolioCreateScreen = ({ history }: any) => {
     if (successCreate) {
       dispatch({ type: PORTFOLIOS_CREATE_RESET })
       history.push('/')
-    } else {
-      alert('hello')
     }
   }, [dispatch, history, successCreate])
 

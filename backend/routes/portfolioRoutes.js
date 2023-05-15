@@ -4,6 +4,6 @@ import {
   getPortfolios,
 } from '../controllers/portfolioController.js'
 const router = express.Router()
-router.route('/').get(getPortfolios)
-router.route('/add').post(createPortfolio)
+router.route('/').get(getPortfolios).post(createPortfolio)
+// router.route('/add').post(createPortfolio)
 export default router
