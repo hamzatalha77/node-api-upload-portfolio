@@ -17,6 +17,7 @@ const PortfolioCreateScreen = ({ history }: any) => {
   const [name, setName] = useState('')
   const [github, setGithub] = useState('')
   const [live, setLive] = useState('')
+  const [image, setImage] = useState('')
 
   const dispatch = useDispatch<Dispatch<any>>()
 
@@ -63,6 +64,12 @@ const PortfolioCreateScreen = ({ history }: any) => {
         placeholder="Project Url..."
         name="live"
         onChange={(e) => setLive(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Project Url..."
+        name="live"
+        onChange={(e) => setImage(e.target.value)}
       />
       <button type="submit">Send !</button>
     </form>
