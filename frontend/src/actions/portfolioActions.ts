@@ -46,7 +46,7 @@ export const createPortfolio =
     try {
       dispatch({ type: PORTFOLIOS_CREATE_REQUEST })
 
-      const { data } = await axios.post(`/api/portfolios`, {}, portfolio)
+      const { data } = await axios.post(`/api/portfolios`, portfolio)
 
       dispatch({ type: PORTFOLIOS_CREATE_SUCCESS, payload: data })
     } catch (error: any) {
