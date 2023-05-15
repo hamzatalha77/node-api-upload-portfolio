@@ -8,6 +8,7 @@ interface RootState {
   portfolioCreate: {
     loading: boolean
     success: boolean
+    error: boolean
     // ... other properties
   }
 }
@@ -23,18 +24,20 @@ const PortfolioCreateScreen = ({ history }: any) => {
     (state: RootState) => state.portfolioCreate
   )
 
-  const { loading: loadingCreate, success: successCreate } = portfolioCreate
+  const { success: successCreate, error: errorCreate } = portfolioCreate
 
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: PORTFOLIOS_CREATE_RESET })
       history.push('/home')
+    } else {
+      console.log('something went wrong!!!')
     }
   }, [dispatch, history, successCreate])
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    await dispatch(
+    dispatch(
       createPortfolio({
         name,
         github,
@@ -44,29 +47,27 @@ const PortfolioCreateScreen = ({ history }: any) => {
   }
 
   return (
-    <div className="h-screen w-full bg-slate-400">
-      <form onSubmit={submitHandler}>
-        <input
-          type="text"
-          placeholder="Project name..."
-          name="name"
-          onChange={(e) => setName(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Github code source..."
-          name="github"
-          onChange={(e) => setGithub(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Project Url..."
-          name="live"
-          onChange={(e) => setLive(e.target.value)}
-        />
-        <button type="submit">Send !</button>
-      </form>
-    </div>
+    <form onSubmit={submitHandler}>
+      <input
+        type="text"
+        placeholder="Project name..."
+        name="name"
+        onChange={(e) => setName(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Github code source..."
+        name="github"
+        onChange={(e) => setGithub(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="Project Url..."
+        name="live"
+        onChange={(e) => setLive(e.target.value)}
+      />
+      <button type="submit">Send !</button>
+    </form>
   )
 }
 
