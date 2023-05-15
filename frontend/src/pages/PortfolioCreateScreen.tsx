@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Dispatch } from 'redux'
 import { createPortfolio } from '../actions/portfolioActions'
 import { PORTFOLIOS_CREATE_RESET } from '../constants/portfolioConstants'
-
+import { useNavigate } from 'react-router-dom'
 interface RootState {
   portfolioCreate: {
     loading: boolean
@@ -13,11 +13,11 @@ interface RootState {
   }
 }
 
-const PortfolioCreateScreen = ({ history = { push: () => {} } }: any) => {
+const PortfolioCreateScreen = () => {
   const [name, setName] = useState('')
   const [github, setGithub] = useState('')
   const [live, setLive] = useState('')
-
+  const navigate = useNavigate()
   const dispatch = useDispatch<Dispatch<any>>()
 
   const portfolioCreate = useSelector(
@@ -29,9 +29,9 @@ const PortfolioCreateScreen = ({ history = { push: () => {} } }: any) => {
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: PORTFOLIOS_CREATE_RESET })
-      history.push('/')
+      navigate('/pushme')
     }
-  }, [dispatch, history, successCreate])
+  }, [dispatch, successCreate, errorCreate, navigate])
 
   const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
