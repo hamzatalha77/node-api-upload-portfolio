@@ -29,9 +29,9 @@ const PortfolioCreateScreen = ({ history }: any) => {
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: PORTFOLIOS_CREATE_RESET })
-      history.push('/home')
+      history.push('/')
     } else {
-      console.log('something went wrong!!!')
+      alert('hello')
     }
   }, [dispatch, history, successCreate])
 
