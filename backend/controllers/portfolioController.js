@@ -15,9 +15,9 @@ const createPortfolio = asyncHandler(async (req, res) => {
       live: req.body.live,
     })
     const createdPortfolio = await portfolio.save()
-    res.json(201).json(createdPortfolio)
+    res.status(201).json(createdPortfolio)
   } catch (error) {
-    res.json(400).json(error.message)
+    res.status(400).json({ message: error.message })
   }
 })
 export { getPortfolios, createPortfolio }
