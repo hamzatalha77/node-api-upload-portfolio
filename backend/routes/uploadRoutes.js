@@ -1,17 +1,41 @@
-const express = require('express')
-const multer = require('multer')
+import path from 'path'
+import express from 'express'
+import multer from 'multer'
+const router = express.Router()
 
-const app = express()
-const upload = multer({ dest: 'uploads/' })
-
-app.post('/upload', upload.array('images'), (req, res) => {
-  // Access uploaded files through req.files
-  // Handle the files (e.g., save them, process them, etc.)
-
-  // Example response
-  res.status(200).json({ message: 'Files uploaded successfully' })
+const storage = multer.diskStorage({
+  destination(req, file, cb) {
+    cb(null, 'uploads/')
+  },
+  filename(req, file, cb) {
+    cb(
+      null,
+      `${file.fieldname}-${Date.now()}${path.extname(file.originalname)}`
+    )
+  },
 })
 
-app.listen(3000, () => {
-  console.log('Server is listening on port 3000')
+function checkFileType(file, cb) {
+  const filetypes = /jpg|jpeg|png/
+  const extname = filetypes.test(path.extname(file.originalname).toLowerCase())
+  const mimetype = filetypes.test(file.mimetype)
+
+  if (extname && mimetype) {
+    return cb(null, true)
+  } else {
+    cb('Images only!')
+  }
+}
+
+const upload = multer({
+  storage,
+  fileFilter: function (req, file, cb) {
+    checkFileType(file, cb)
+  },
 })
+
+router.post('/', upload.single('image'), (req, res) => {
+  res.send(`/${req.file.path}`)
+})
+
+export default router
