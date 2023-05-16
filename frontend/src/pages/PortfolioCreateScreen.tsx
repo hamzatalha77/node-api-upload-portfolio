@@ -17,6 +17,7 @@ const PortfolioCreateScreen = () => {
   const [name, setName] = useState('')
   const [github, setGithub] = useState('')
   const [live, setLive] = useState('')
+  const [image, setImage] = useState('')
   const navigate = useNavigate()
   const dispatch = useDispatch<Dispatch<any>>()
 
