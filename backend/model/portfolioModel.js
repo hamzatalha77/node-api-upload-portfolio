@@ -13,6 +13,10 @@ const portfolioSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  image: {
+    type: String,
+    required: true,
+  },
 })
 const Portfolio = mongoose.model('Portfolio', portfolioSchema)
 export default Portfolio
