@@ -12,7 +12,7 @@ const createPortfolio = asyncHandler(async (req, res) => {
       name: req.body.name,
       github: req.body.github,
       live: req.body.live,
-      image: req.body.image,
+      images: req.body.images,
     })
     const createdPortfolio = await portfolio.save()
     res.status(201).json(createdPortfolio)
