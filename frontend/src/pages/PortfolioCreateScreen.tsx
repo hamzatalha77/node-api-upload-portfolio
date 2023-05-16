@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, ChangeEvent, FormEvent } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Dispatch } from 'redux'
 import { createPortfolio } from '../actions/portfolioActions'
 import { PORTFOLIOS_CREATE_RESET } from '../constants/portfolioConstants'
 import { useNavigate } from 'react-router-dom'
+import axios from 'axios'
+
 interface RootState {
   portfolioCreate: {
     loading: boolean
@@ -34,13 +36,37 @@ const PortfolioCreateScreen = () => {
     }
   }, [dispatch, successCreate, errorCreate, navigate])
 
-  const submitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
+  const uploadFileHandler = async (e: ChangeEvent<HTMLInputElement>) => {
+    const fileInput = e.target as HTMLInputElement
+    if (fileInput && fileInput.files && fileInput.files.length > 0) {
+      const file = fileInput.files[0]
+      const formData = new FormData()
+      formData.append('image', file)
+
+      try {
+        const config = {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        }
+
+        const { data } = await axios.post('/api/upload', formData, config)
+
+        setImage(data)
+      } catch (error) {
+        console.error(error)
+      }
+    }
+  }
+
+  const submitHandler = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(
       createPortfolio({
         name,
         github,
         live,
+        image,
       })
     )
   }
@@ -65,7 +91,13 @@ const PortfolioCreateScreen = () => {
         name="live"
         onChange={(e) => setLive(e.target.value)}
       />
-      <button type="submit">Send !</button>
+      <input
+        type="text"
+        value={image}
+        onChange={(e) => setImage(e.target.value)}
+      />
+      <input type="file" onChange={uploadFileHandler} />
+      <button type="submit">Send!</button>
     </form>
   )
 }
