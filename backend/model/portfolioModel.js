@@ -3,20 +3,20 @@ import mongoose from 'mongoose'
 const portfolioSchema = mongoose.Schema({
   name: {
     type: String,
-    required: true,
+    required: true
   },
   github: {
     type: String,
-    required: true,
+    required: true
   },
   live: {
     type: String,
-    required: true,
+    required: true
   },
   image: {
     type: String,
-    required: true,
-  },
+    required: true
+  }
 })
 const Portfolio = mongoose.model('Portfolio', portfolioSchema)
 export default Portfolio
